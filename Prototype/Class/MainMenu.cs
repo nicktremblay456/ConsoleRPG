@@ -85,14 +85,11 @@
             Console.ResetColor();
 
             do { GetInput(ref input); }
-            while (input < 1 || input > 1);
-            // Temporary
-            switch (input)
-            {
-                case 1:
-                    ShowMainMenu();
-                    break;
-            }
+            while (input != 1);
+
+            // TO DO, make load game system and input options
+
+            ShowMainMenu();
         }
 
         private void GetInput(ref byte input)
@@ -102,7 +99,7 @@
             { 
                 input = byte.Parse(Console.ReadLine());
             }
-            catch { input = 0; }
+            catch { input = 99; }
         }
 
         private void CreateNewCharacter(EClass a_Class)

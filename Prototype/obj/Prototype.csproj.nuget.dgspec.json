@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Nick_\\OneDrive\\Bureau\\Prototype\\Prototype.csproj": {}
+    "C:\\Users\\Nick_\\OneDrive\\Bureau\\ConsoleRPG\\Prototype\\Prototype.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nick_\\OneDrive\\Bureau\\Prototype\\Prototype.csproj": {
+    "C:\\Users\\Nick_\\OneDrive\\Bureau\\ConsoleRPG\\Prototype\\Prototype.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nick_\\OneDrive\\Bureau\\Prototype\\Prototype.csproj",
+        "projectUniqueName": "C:\\Users\\Nick_\\OneDrive\\Bureau\\ConsoleRPG\\Prototype\\Prototype.csproj",
         "projectName": "Prototype",
-        "projectPath": "C:\\Users\\Nick_\\OneDrive\\Bureau\\Prototype\\Prototype.csproj",
+        "projectPath": "C:\\Users\\Nick_\\OneDrive\\Bureau\\ConsoleRPG\\Prototype\\Prototype.csproj",
         "packagesPath": "C:\\Users\\Nick_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nick_\\OneDrive\\Bureau\\Prototype\\obj\\",
+        "outputPath": "C:\\Users\\Nick_\\OneDrive\\Bureau\\ConsoleRPG\\Prototype\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nick_\\AppData\\Roaming\\NuGet\\NuGet.Config",

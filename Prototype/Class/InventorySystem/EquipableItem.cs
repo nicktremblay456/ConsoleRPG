@@ -28,8 +28,8 @@
         /// Constructor
         /// </summary>
         /// <param name="a_ItemStats">Need to enter 7 value, not more or less. </param>
-        public EquipableItem(string a_ItemnName, EQuality a_Quality, EEquipableType a_Type, int[] a_ItemStats, EWeaponType a_WeaponType = EWeaponType.NONE) 
-            : base(a_ItemnName, a_Quality)
+        public EquipableItem(int a_Price, string a_ItemnName, EQuality a_Quality, EEquipableType a_Type, int[] a_ItemStats, EWeaponType a_WeaponType = EWeaponType.NONE) 
+            : base(a_Price, a_ItemnName, a_Quality)
         {
             m_Type = a_Type;
             m_Armor = a_ItemStats[0];
@@ -76,6 +76,8 @@
             if (m_Energy > 0)
                 Console.Write($"+{m_Energy} Energy\n");
 
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write($"\nValue: {p_Price} Gold\n");
             Console.ResetColor();
             Console.WriteLine("¤════════════════════¤");
         }

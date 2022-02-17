@@ -44,6 +44,7 @@
                 Console.Write($"{i + 1}: {m_Products[i].Item.Name} -> {m_Products[i].Price} gold\n");
             }
             Console.ResetColor();
+            //Console.Write($"{m_Products.Count + 1}: Sell Item\n");
             Console.Write($"{m_Products.Count + 1}: Leave\n");
 
             Console.WriteLine("\n¤═════════════════════════════¤");

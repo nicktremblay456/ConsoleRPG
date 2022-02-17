@@ -134,6 +134,8 @@
             while (input > m_Blacksmith.ProductsCount + 2);
 
             if (input == m_Blacksmith.ProductsCount + 1)
+                SellingItemOptions(BlacksmithOptions);
+            else if (input == m_Blacksmith.ProductsCount + 2)
                 MainOptions();
             else
                 SelectedBsItemOptions(m_Blacksmith.GetProduct(input - 1));
@@ -319,8 +321,11 @@
             }
         }
 
-        private void SelectedItemOptions(Item a_Item)
+        private void SelectedItemOptions(Item? a_Item)
         {
+            if (a_Item == null)
+                return;
+
             byte input = byte.MinValue;
 
             Console.Clear();
@@ -347,8 +352,11 @@
                     else if (a_Item is ConsumableItem)
                     {
                         ConsumableItem? cons = a_Item as ConsumableItem;
-                        m_Player?.Regen(cons.HealthAmount, cons.ManaAmount);
-                        m_Player?.Inventory.RemoveItem(a_Item);
+                        if (cons != null)
+                        {
+                            m_Player?.Regen(cons.HealthAmount, cons.ManaAmount);
+                            m_Player?.Inventory.RemoveItem(a_Item);
+                        }
                     }
                     InventoryOptions();
                     break;
@@ -442,6 +450,7 @@
             MainOptions();
         }
 
+        // IN PROGRESS
         private void SellingItemOptions(Action a_OptionFunc)
         {
             byte input = byte.MinValue;
@@ -458,16 +467,35 @@
                     a_OptionFunc.Invoke();
             }
             else
-                SelectedItemToSell(m_Player?.Inventory.GetItem(input + 1));
+                SelectedItemToSell(m_Player?.Inventory.GetItem(input), a_OptionFunc);
         }
 
-        private void SelectedItemToSell(Item? a_Item)
+        // IN PROGRESS
+        private void SelectedItemToSell(Item? a_Item, Action a_OptionFunc)
         {
             if (a_Item == null)
                 return;
 
+            byte input = byte.MinValue;
             Console.Clear();
             a_Item.DrawItem();
+
+            Console.Write("╔═════════════════════════════╗\n" +
+                          "║       ¤ Item options ¤      ║\n" +
+                          "║                             ║\n" +
+                          "║   1- Sell                   ║\n" +
+                          "║                             ║\n" +
+                          "║   2- Back                   ║\n" +
+                          "║                             ║\n" +
+                          "╚═════════════════════════════╝\n");
+
+            do { GetInput(ref input, $"Do you want sell {a_Item.Name}? : "); }
+            while (input > 2);
+
+            if (input == 0)
+                m_Player?.Inventory.SellItem(a_Item);
+            else
+                SellingItemOptions(a_OptionFunc);
         }
 
         private void GetInput(ref byte a_Input, string a_Text)

@@ -27,10 +27,10 @@
                 m_Gold -= a_Price;
         }
 
-        public void SellItem(Product a_Product)
+        public void SellItem(Item a_Item)
         {
-            m_Gold += a_Product.Price;
-            RemoveItem(a_Product.Item);
+            m_Gold += a_Item.Price;
+            RemoveItem(a_Item);
         }
 
         public void AddItem(Item a_Item)

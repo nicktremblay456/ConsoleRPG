@@ -13,7 +13,7 @@
             {
                 for (int j = 0; j < items[i].Count; j++)
                 {
-                    equipableItems.Add(new EquipableItem(items[i][j].Name, (EQuality)items[i][j].Quality, (EEquipableType)items[i][j].EquipableType, 
+                    equipableItems.Add(new EquipableItem(items[i][j].Price, items[i][j].Name, (EQuality)items[i][j].Quality, (EEquipableType)items[i][j].EquipableType, 
                         new int[] { items[i][j].Armor, items[i][j].Strength, items[i][j].Dexterity, items[i][j].Vitality, items[i][j].Energy, 
                             items[i][j].MinDamage, items[i][j].MaxDamage }, (EWeaponType)items[i][j].WeaponType));
                 }
@@ -30,7 +30,7 @@
             for (int i = 0; i < items?.Count; i++)
             {
                 consumableItems.Add(new Product(items[i].Price, new ConsumableItem
-                    (items[i].Name, (EQuality)items[i].Quality, items[i].HealthAmount, items[i].ManaAmount)));
+                    (items[i].Price, items[i].Name, (EQuality)items[i].Quality, items[i].HealthAmount, items[i].ManaAmount)));
             }
             return consumableItems.ToArray();
         }
@@ -43,7 +43,7 @@
             var items = Newtonsoft.Json.JsonConvert.DeserializeObject<List<EquipableObject>>(json);
             for (int i = 0; i < items?.Count; i++)
             {
-                equipableItems.Add(new Product(items[i].Price, new EquipableItem(items[i].Name, (EQuality)items[i].Quality, (EEquipableType)items[i].EquipableType,
+                equipableItems.Add(new Product(items[i].Price, new EquipableItem(items[i].Price, items[i].Name, (EQuality)items[i].Quality, (EEquipableType)items[i].EquipableType,
                     new int[] { items[i].Armor, items[i].Strength, items[i].Dexterity, items[i].Vitality, items[i].Energy,
                                 items[i].MinDamage, items[i].MaxDamage }, (EWeaponType)items[i].WeaponType)));
             }

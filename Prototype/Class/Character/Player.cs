@@ -26,9 +26,9 @@
             p_Class = a_Class;
 
             // Test items
-            EquipableItem item = new EquipableItem("Enigma", EQuality.Epic, EEquipableType.Chest, 
+            EquipableItem item = new EquipableItem(1000, "Enigma", EQuality.Epic, EEquipableType.Chest, 
             new int[] { 1200, 225, 175, 500, 250, 0, 0 });
-            EquipableItem item2 = new EquipableItem("Breath Of The Dying", EQuality.Legendary, EEquipableType.MainHand,
+            EquipableItem item2 = new EquipableItem(1000, "Breath Of The Dying", EQuality.Legendary, EEquipableType.MainHand,
             new int[] { 0, 500, 350, 250, 250, 75, 235 }, EWeaponType.MELEE);
 
             m_Inventory.AddItems(new Item[] { item, item2 });

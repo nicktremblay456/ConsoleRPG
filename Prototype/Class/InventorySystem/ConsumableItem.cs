@@ -8,7 +8,7 @@
         public int HealthAmount { get => m_HealthAmount; }
         public int ManaAmount { get => m_ManaAmount; }
 
-        public ConsumableItem(string a_Name, EQuality a_Quality, int a_HealthAmount, int a_ManaAmount) : base(a_Name, a_Quality)
+        public ConsumableItem(int a_Price, string a_Name, EQuality a_Quality, int a_HealthAmount, int a_ManaAmount) : base(a_Price, a_Name, a_Quality)
         {
             m_HealthAmount = a_HealthAmount;
             m_ManaAmount = a_ManaAmount;
@@ -35,6 +35,9 @@
                 Console.Write($"+{m_HealthAmount} Health Points\n");
             if (m_ManaAmount > 0)
                 Console.Write($"+{m_ManaAmount} Mana Points\n");
+
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write($"\nValue: {p_Price} Gold\n");
             Console.ResetColor();
             Console.WriteLine("\n¤════════════════════¤");
         }
