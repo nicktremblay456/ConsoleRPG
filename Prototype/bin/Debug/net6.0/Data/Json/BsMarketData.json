@@ -1,0 +1,172 @@
+[
+  {
+    "Price": "50",
+    "EquipableType": "6", // Main Hand
+    "WeaponType": "0", // Melee
+    "Name": "Iron Sword",
+    "Quality": "1", // Common
+    "Armor": "0",
+    "Strength": "0",
+    "Dexterity": "0",
+    "Vitality": "0",
+    "Energy": "0",
+    "MinDamage": "2",
+    "MaxDamage": "7"
+  },
+  {
+    "Price": "75",
+    "EquipableType": "6", // Main Hand
+    "WeaponType": "1", // Ranged
+    "Name": "Polished Shortbow",
+    "Quality": "1", // Common
+    "Armor": "0",
+    "Strength": "0",
+    "Dexterity": "0",
+    "Vitality": "0",
+    "Energy": "0",
+    "MinDamage": "1",
+    "MaxDamage": "10"
+  },
+  {
+    "Price": "100",
+    "EquipableType": "6", // Main Hand
+    "WeaponType": "0", // Melee
+    "Name": "Fine Scimitar",
+    "Quality": "1", // Common
+    "Armor": "0",
+    "Strength": "0",
+    "Dexterity": "0",
+    "Vitality": "0",
+    "Energy": "0",
+    "MinDamage": "2",
+    "MaxDamage": "10"
+  },
+  {
+    "Price": "125",
+    "EquipableType": "6", // Main Hand
+    "WeaponType": "1", // Ranged
+    "Name": "Ashwood Bow",
+    "Quality": "1", // Common
+    "Armor": "0",
+    "Strength": "0",
+    "Dexterity": "0",
+    "Vitality": "0",
+    "Energy": "0",
+    "MinDamage": "2",
+    "MaxDamage": "12"
+  },
+  {
+    "Price": "125",
+    "EquipableType": "6", // Main Hand
+    "WeaponType": "0", // Melee
+    "Name": "Copper Shortsword",
+    "Quality": "1", // Common
+    "Armor": "0",
+    "Strength": "0",
+    "Dexterity": "0",
+    "Vitality": "0",
+    "Energy": "0",
+    "MinDamage": "2",
+    "MaxDamage": "15"
+  },
+  {
+    "Price": "150",
+    "EquipableType": "6", // Main Hand
+    "WeaponType": "1", // Ranged
+    "Name": "Heavy Recurve Bow",
+    "Quality": "1", // Common
+    "Armor": "0",
+    "Strength": "0",
+    "Dexterity": "0",
+    "Vitality": "0",
+    "Energy": "0",
+    "MinDamage": "2",
+    "MaxDamage": "15"
+  },
+  {
+    "Price": "150",
+    "EquipableType": "6", // Main Hand
+    "WeaponType": "0", // Melee
+    "Name": "Gladius",
+    "Quality": "1", // Common
+    "Armor": "0",
+    "Strength": "0",
+    "Dexterity": "0",
+    "Vitality": "0",
+    "Energy": "0",
+    "MinDamage": "3",
+    "MaxDamage": "20"
+  },
+  {
+    "Price": "200",
+    "EquipableType": "6", // Main Hand
+    "WeaponType": "1", // Ranged
+    "Name": "Bael's Shortbow",
+    "Quality": "1", // Common
+    "Armor": "0",
+    "Strength": "0",
+    "Dexterity": "0",
+    "Vitality": "0",
+    "Energy": "0",
+    "MinDamage": "5",
+    "MaxDamage": "20"
+  },
+
+
+  {
+    "Price": "200",
+    "EquipableType": "6", // Main Hand
+    "WeaponType": "0", // Melee
+    "Name": "Raider Shortsword",
+    "Quality": "2", // Uncommon
+    "Armor": "0",
+    "Strength": "2",
+    "Dexterity": "0",
+    "Vitality": "0",
+    "Energy": "0",
+    "MinDamage": "5",
+    "MaxDamage": "25"
+  },
+  {
+    "Price": "250",
+    "EquipableType": "6", // Main Hand
+    "WeaponType": "0", // Melee
+    "Name": "Thick War Axe",
+    "Quality": "2", // Uncommon
+    "Armor": "0",
+    "Strength": "5",
+    "Dexterity": "0",
+    "Vitality": "0",
+    "Energy": "0",
+    "MinDamage": "5",
+    "MaxDamage": "30"
+  },
+  {
+    "Price": "325",
+    "EquipableType": "6", // Main Hand
+    "WeaponType": "0", // Melee
+    "Name": "Bleeding Crescent",
+    "Quality": "2", // Uncommon
+    "Armor": "0",
+    "Strength": "8",
+    "Dexterity": "0",
+    "Vitality": "20",
+    "Energy": "0",
+    "MinDamage": "8",
+    "MaxDamage": "32"
+  },
+  {
+    "Price": "375",
+    "EquipableType": "6", // Main Hand
+    "WeaponType": "0", // Melee
+    "Name": "Moon Cleaver",
+    "Quality": "2", // Uncommon
+    "Armor": "0",
+    "Strength": "10",
+    "Dexterity": "0",
+    "Vitality": "25",
+    "Energy": "20",
+    "MinDamage": "8",
+    "MaxDamage": "35"
+  }
+]

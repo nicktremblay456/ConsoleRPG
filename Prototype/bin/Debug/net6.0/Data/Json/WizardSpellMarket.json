@@ -1,0 +1,47 @@
+[
+  {
+    "Price": "25",
+    "Name": "Fireball",
+    "Type": "0", // Damage
+    "ArmorBuff": "0",
+    "StrengthBuff": "0",
+    "DexterityBuff": "0",
+    "VitalityBuff": "0",
+    "EnergyBuff": "0",
+    "MinDamage": "1",
+    "MaxDamage": "10",
+    "HealAmount": "0",
+    "ManaAmount": "0",
+    "ManaCost": "10"
+  },
+  {
+    "Price": "25",
+    "Name": "Prayer of Fortitude",
+    "Type": "1", // Buff
+    "ArmorBuff": "0",
+    "StrengthBuff": "0",
+    "DexterityBuff": "0",
+    "VitalityBuff": "50",// +25hp
+    "EnergyBuff": "0",
+    "MinDamage": "0",
+    "MaxDamage": "0",
+    "HealAmount": "0",
+    "ManaAmount": "0",
+    "ManaCost": "20"
+  },
+  {
+    "Price": "25",
+    "Name": "Lesser Healing",
+    "Type": "2", // Heal
+    "ArmorBuff": "0",
+    "StrengthBuff": "0",
+    "DexterityBuff": "0",
+    "VitalityBuff": "0",
+    "EnergyBuff": "0",
+    "MinDamage": "0",
+    "MaxDamage": "0",
+    "HealAmount": "25",
+    "ManaAmount": "0",
+    "ManaCost": "20"
+  }
+]

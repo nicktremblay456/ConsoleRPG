@@ -1,0 +1,86 @@
+﻿[
+  [// Warrior Starting Items
+    {
+      "EquipableType": "6", // Main Hand
+      "WeaponType": "0", // Melee
+      "Name": "Bronze Sword",
+      "Quality": "0", // Poor
+      "Armor": "0",
+      "Strength": "0",
+      "Dexterity": "0",
+      "Vitality": "0",
+      "Energy": "0",
+      "MinDamage": "1",
+      "MaxDamage": "5"
+    },
+    {
+      "EquipableType": "7", // Off Hand
+      "WeaponType": "-1", // None
+      "Name": "Wooden Shield",
+      "Quality": "0", // Poor
+      "Armor": "10",
+      "Strength": "0",
+      "Dexterity": "0",
+      "Vitality": "0",
+      "Energy": "0",
+      "MinDamage": "0",
+      "MaxDamage": "0"
+    }
+  ],
+  [// Archer Starting Items
+    {
+      "EquipableType": "6", // Main Hand
+      "WeaponType": "1", // Ranged
+      "Name": "Primitive Bow",
+      "Quality": "0",
+      "Armor": "0",
+      "Strength": "0",
+      "Dexterity": "0",
+      "Vitality": "0",
+      "Energy": "0",
+      "MinDamage": "1",
+      "MaxDamage": "7"
+    },
+    {
+      "EquipableType": "7", // Off Hand
+      "WeaponType": "-1", // None
+      "Name": "Light Quiver",
+      "Quality": "0", // Poor
+      "Armor": "0",
+      "Strength": "0",
+      "Dexterity": "5",
+      "Vitality": "0",
+      "Energy": "0",
+      "MinDamage": "0",
+      "MaxDamage": "0"
+    }
+  ],
+  [// Sorcerer Starting Items
+    {
+      "EquipableType": "6", // Main Hand
+      "WeaponType": "1", // Ranged
+      "Name": "Wooden Staff",
+      "Quality": "0",
+      "Armor": "0",
+      "Strength": "0",
+      "Dexterity": "0",
+      "Vitality": "0",
+      "Energy": "0",
+      "MinDamage": "1",
+      "MaxDamage": "7"
+    },
+    {
+      "EquipableType": "7", // Off Hand
+      "WeaponType": "-1", // None
+      "Name": "Witchcraft Learning Book",
+      "Quality": "0", // Poor
+      "Armor": "0",
+      "Strength": "0",
+      "Dexterity": "0",
+      "Vitality": "0",
+      "Energy": "20", // +10 mana
+      "MinDamage": "0",
+      "MaxDamage": "0"
+    }
+  ]
+]

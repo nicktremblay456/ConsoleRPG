@@ -1,0 +1,44 @@
+[
+  {
+    "Price": "50",
+    "EquipableType": "6", // Main Hand
+    "WeaponType": "2", // Magical
+    "Name": "Acolyte Staff",
+    "Quality": "1", // Common
+    "Armor": "0",
+    "Strength": "0",
+    "Dexterity": "0",
+    "Vitality": "0",
+    "Energy": "0",
+    "MinDamage": "1",
+    "MaxDamage": "6"
+  },
+  {
+    "Price": "100",
+    "EquipableType": "6", // Main Hand
+    "WeaponType": "2", // Magical
+    "Name": "Executor Staff",
+    "Quality": "1", // Common
+    "Armor": "0",
+    "Strength": "0",
+    "Dexterity": "0",
+    "Vitality": "0",
+    "Energy": "0",
+    "MinDamage": "2",
+    "MaxDamage": "8"
+  },
+  {
+    "Price": "125",
+    "EquipableType": "6", // Main Hand
+    "WeaponType": "2", // Magical
+    "Name": "Dreamwatcher Staff",
+    "Quality": "1", // Common
+    "Armor": "0",
+    "Strength": "0",
+    "Dexterity": "0",
+    "Vitality": "0",
+    "Energy": "0",
+    "MinDamage": "2",
+    "MaxDamage": "12"
+  }
+]

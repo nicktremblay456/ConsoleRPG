@@ -1,0 +1,58 @@
+﻿[
+  {
+    "Quality": "0", // Poor
+    "Name": "Minor Healing Potion",
+    "HealthAmount": "25",
+    "ManaAmount": "0",
+    "Price": "10"
+  },
+  {
+    "Quality": "0", // Poor
+    "Name": "Minor Mana Potion",
+    "HealthAmount": "0",
+    "ManaAmount": "25",
+    "Price": "10"
+  },
+  {
+    "Quality": "1", // Common
+    "Name": "Lesser Healing Potion",
+    "HealthAmount": "50",
+    "ManaAmount": "0",
+    "Price": "25"
+  },
+  {
+    "Quality": "1", // Common
+    "Name": "Lesser Mana Potion",
+    "HealthAmount": "0",
+    "ManaAmount": "50",
+    "Price": "25"
+  },
+  {
+    "Quality": "2", // Uncommon
+    "Name": "Healing Potion",
+    "HealthAmount": "75",
+    "ManaAmount": "0",
+    "Price": "50"
+  },
+  {
+    "Quality": "2", // Uncommon
+    "Name": "Mana Potion",
+    "HealthAmount": "0",
+    "ManaAmount": "75",
+    "Price": "50"
+  },
+  {
+    "Quality": "3", // Rare
+    "Name": "Greater Healing Potion",
+    "HealthAmount": "100",
+    "ManaAmount": "0",
+    "Price": "75"
+  },
+  {
+    "Quality": "3", // Rare
+    "Name": "Greater Mana Potion",
+    "HealthAmount": "0",
+    "ManaAmount": "100",
+    "Price": "75"
+  }
+]
