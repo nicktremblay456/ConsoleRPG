@@ -1,4 +1,6 @@
-﻿namespace Prototype
+﻿using WMPLib;
+
+namespace Prototype
 {
     public sealed class Game
     {
@@ -23,6 +25,10 @@
             m_Blacksmith = new NPC("Blacksmith", GameData.GetMarketProducts("BsMarketData.json"));
             m_Wizard = new WizardNpc("Wizard", GameData.GetWizardSpells("WizardSpellMarket.json"), 
                                                GameData.GetMarketProducts("WizardItemMarket.json"));
+
+            //WindowsMediaPlayer myplayer = new WindowsMediaPlayer();
+            //myplayer.URL = @"C:\Users\Nick_\OneDrive\Bureau\ConsoleRPG\Prototype\Data\orgrimmar02-zone.mp3";
+            //myplayer.controls.play();
         }
 
         public void ShowMainMenu()

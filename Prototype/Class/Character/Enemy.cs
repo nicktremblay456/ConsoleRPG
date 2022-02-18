@@ -19,6 +19,25 @@
 
         }
 
+        public int GetDamage()
+        {
+            Random r = new Random();
+            int minDamage = 1, maxDamage = 1;
+
+            /*
+             * int minWeaponDmg = m_Inventory.GetWeapon.().GetWeapon().MinDamage;
+             * int maxWeaponDmg m_Inventory.GetWeapon.().GetWeapon().MaxDamage;
+             * if (m_Inventory.GetWeapon.() != null)
+             * minDamage = m_Inventory.GetWeapon.().WeaponType == EWeaponType.Melee ? minWeaponDamage + (p_Strength * 0.5f) : minWeaponDamage + (p_Dexterity * 0.5f);
+             * maxDamage = m_Inventory.GetWeapon.().WeaponType == EWeaponType.Melee ? maxWeaponDamage + (p_Strength * 0.5f) : maxWeaponDamage + (p_Dexterity * 0.5f);
+             * return r.Next(minDamage, maxDamage + 1);
+             * else return 1 + (p_Strength * 0.5f);
+             */
+
+            return r.Next(minDamage, maxDamage + 1);
+        }
+
+        #region Abstract Methods
         public override void TakeDamage(int a_Amount)
         {
             float damage = a_Amount - (p_Armor * 0.5f);
@@ -46,24 +65,6 @@
             }
         }
 
-        public int GetDamage()
-        {
-            Random r = new Random();
-            int minDamage = 1, maxDamage = 1;
-
-            /*
-             * int minWeaponDmg = m_Inventory.GetWeapon.().GetWeapon().MinDamage;
-             * int maxWeaponDmg m_Inventory.GetWeapon.().GetWeapon().MaxDamage;
-             * if (m_Inventory.GetWeapon.() != null)
-             * minDamage = m_Inventory.GetWeapon.().WeaponType == EWeaponType.Melee ? minWeaponDamage + (p_Strength * 0.5f) : minWeaponDamage + (p_Dexterity * 0.5f);
-             * maxDamage = m_Inventory.GetWeapon.().WeaponType == EWeaponType.Melee ? maxWeaponDamage + (p_Strength * 0.5f) : maxWeaponDamage + (p_Dexterity * 0.5f);
-             * return r.Next(minDamage, maxDamage + 1);
-             * else return 1 + (p_Strength * 0.5f);
-             */
-
-            return r.Next(minDamage, maxDamage + 1);
-        }
-
         public override void DrawStats()
         {
             Console.WriteLine("¤═════════════════════════════¤");
@@ -86,5 +87,6 @@
             Console.ResetColor();
             Console.WriteLine("¤═════════════════════════════¤");
         }
+        #endregion
     }
 }

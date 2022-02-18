@@ -58,33 +58,6 @@
             return r.Next(minDamage, maxDamage + 1);
         }
 
-        public override void TakeDamage(int a_Amount)
-        {
-            m_CurrentMana -= a_Amount;
-            if (m_CurrentHealth <= 0)
-            {
-                m_IsDead = true;
-                m_CurrentHealth = 0;
-                // TO DO
-            }
-        }
-
-        public override void Regen(int a_HealthAmount = 0, int a_ManaAmount = 0)
-        {
-            if (a_HealthAmount > 0)
-            {
-                m_CurrentHealth += a_HealthAmount;
-                if (m_CurrentHealth > p_Health)
-                    m_CurrentHealth = p_Health;
-            }
-            if (a_ManaAmount > 0)
-            {
-                m_CurrentMana += a_ManaAmount;
-                if (m_CurrentMana > p_Mana)
-                    m_CurrentMana = p_Mana;
-            }
-        }
-
         public int[] Stats(EquipableItem a_Item)
         {
             return new int[] 
@@ -130,6 +103,34 @@
             m_CurrentMana = p_Mana;
         }
 
+        public override void TakeDamage(int a_Amount)
+        {
+            m_CurrentMana -= a_Amount;
+            if (m_CurrentHealth <= 0)
+            {
+                m_IsDead = true;
+                m_CurrentHealth = 0;
+                // TO DO
+            }
+        }
+
+        #region Abstract Methods
+        public override void Regen(int a_HealthAmount = 0, int a_ManaAmount = 0)
+        {
+            if (a_HealthAmount > 0)
+            {
+                m_CurrentHealth += a_HealthAmount;
+                if (m_CurrentHealth > p_Health)
+                    m_CurrentHealth = p_Health;
+            }
+            if (a_ManaAmount > 0)
+            {
+                m_CurrentMana += a_ManaAmount;
+                if (m_CurrentMana > p_Mana)
+                    m_CurrentMana = p_Mana;
+            }
+        }
+
         public override void DrawStats()
         {
             Console.WriteLine("¤═════════════════════════════¤");
@@ -147,9 +148,12 @@
             Console.Write($"Strength: {p_Strength}\n" +
                           $"Dexterity: {p_Dexterity}\n" +
                           $"Vitality: {p_Vitality}\n" +
-                          $"Energy: {p_Energy}\n");
+                          $"Energy: {p_Energy}\n\n");
+
+            Console.Write($"Exp: {p_Exp}");
             Console.ResetColor();
             Console.WriteLine("¤═════════════════════════════¤");
         }
+        #endregion
     }
 }

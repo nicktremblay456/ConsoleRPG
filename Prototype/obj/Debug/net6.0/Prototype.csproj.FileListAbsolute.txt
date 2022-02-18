@@ -32,3 +32,6 @@ C:\Users\Nick_\OneDrive\Bureau\ConsoleRPG\Prototype\obj\Debug\net6.0\Prototype.d
 C:\Users\Nick_\OneDrive\Bureau\ConsoleRPG\Prototype\obj\Debug\net6.0\ref\Prototype.dll
 C:\Users\Nick_\OneDrive\Bureau\ConsoleRPG\Prototype\obj\Debug\net6.0\Prototype.pdb
 C:\Users\Nick_\OneDrive\Bureau\ConsoleRPG\Prototype\obj\Debug\net6.0\Prototype.genruntimeconfig.cache
+C:\Users\Nick_\OneDrive\Bureau\ConsoleRPG\Prototype\obj\Debug\net6.0\Interop.WMLSS.dll
+C:\Users\Nick_\OneDrive\Bureau\ConsoleRPG\Prototype\obj\Debug\net6.0\Interop.WMPLib.dll
+C:\Users\Nick_\OneDrive\Bureau\ConsoleRPG\Prototype\obj\Debug\net6.0\Prototype.csproj.ResolveComReference.cache
