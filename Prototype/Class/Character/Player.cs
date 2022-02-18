@@ -1,6 +1,6 @@
 ﻿namespace Prototype
 {
-    public sealed class Player : Character, IDamageable
+    public sealed class Player : Character
     {
         private Equipment m_Equipment;
         private Inventory m_Inventory;
@@ -58,8 +58,7 @@
             return r.Next(minDamage, maxDamage + 1);
         }
 
-        #region IDamageable
-        public void TakeDamage(int a_Amount)
+        public override void TakeDamage(int a_Amount)
         {
             m_CurrentMana -= a_Amount;
             if (m_CurrentHealth <= 0)
@@ -70,7 +69,7 @@
             }
         }
 
-        public void Regen(int a_HealthAmount = 0, int a_ManaAmount = 0)
+        public override void Regen(int a_HealthAmount = 0, int a_ManaAmount = 0)
         {
             if (a_HealthAmount > 0)
             {
@@ -85,7 +84,6 @@
                     m_CurrentMana = p_Mana;
             }
         }
-        #endregion
 
         public int[] Stats(EquipableItem a_Item)
         {

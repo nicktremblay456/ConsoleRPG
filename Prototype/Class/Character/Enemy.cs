@@ -1,6 +1,6 @@
 ﻿namespace Prototype
 {
-    public class Enemy : Character, IDamageable
+    public class Enemy : Character
     {
         private int m_CurrentHealth = 0;
         private int m_CurrentMana = 0;
@@ -19,7 +19,7 @@
 
         }
 
-        public void TakeDamage(int a_Amount)
+        public override void TakeDamage(int a_Amount)
         {
             float damage = a_Amount - (p_Armor * 0.5f);
             m_CurrentHealth -= (int)damage;
@@ -30,7 +30,7 @@
             }
         }
 
-        public void Regen(int a_HealthAmount = 0, int a_ManaAmount = 0)
+        public override void Regen(int a_HealthAmount = 0, int a_ManaAmount = 0)
         {
             if (a_HealthAmount > 0)
             {

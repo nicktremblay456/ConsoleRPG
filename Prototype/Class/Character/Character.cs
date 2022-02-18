@@ -83,6 +83,10 @@
             p_Mana -= a_Stats[4] / 2;
         }
 
+        public abstract void TakeDamage(int a_Amount);
+
+        public abstract void Regen(int a_HealthAmount = 0, int a_ManaAmount = 0);
+
         public abstract void DrawStats();
     }
 }
