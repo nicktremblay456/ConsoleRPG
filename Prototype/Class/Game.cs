@@ -7,12 +7,18 @@ namespace Prototype
         private static Game? m_Instance;
         public static Game? Instance { get => m_Instance; }
 
+        private GameMusic m_Music;
+
         private MainMenu m_MainMenu;
+
         private NPC m_Alchemist;
         private NPC m_Blacksmith;
         private WizardNpc m_Wizard;
+
         private Player? m_Player = null;
+        
         public Player? Player { get => m_Player; }
+
 
         public Game()
         {
@@ -26,9 +32,7 @@ namespace Prototype
             m_Wizard = new WizardNpc("Wizard", GameData.GetWizardSpells("WizardSpellMarket.json"), 
                                                GameData.GetMarketProducts("WizardItemMarket.json"));
 
-            //WindowsMediaPlayer myplayer = new WindowsMediaPlayer();
-            //myplayer.URL = @"C:\Users\Nick_\OneDrive\Bureau\ConsoleRPG\Prototype\Data\orgrimmar02-zone.mp3";
-            //myplayer.controls.play();
+            m_Music = new GameMusic();
         }
 
         public void ShowMainMenu()
@@ -38,6 +42,7 @@ namespace Prototype
 
         private void MainOptions()
         {
+            m_Music.PlayMusic(EMusic.Town);
             Console.Clear();
             //m_Player?.DrawStats();
 
@@ -68,7 +73,7 @@ namespace Prototype
             {
                 case 1: break;// Arena
                 case 2: AlchemistOptions(); break;
-                case 3: BlacksmithOptions(); break;
+                case 3: m_Music.PlayMusic(EMusic.Market); BlacksmithOptions(); break;
                 case 4: WizardOptions(); break;
                 case 5: InventoryOptions(); break;
                 case 6: EquipmentOptions(); break;
@@ -137,11 +142,11 @@ namespace Prototype
             m_Blacksmith.DrawMarket();
 
             do { GetInput(ref input, "Select an item to buy: "); }
-            while (input > m_Blacksmith.ProductsCount + 2);
+            while (input > m_Blacksmith.ProductsCount + 1);
 
+            //if (input == m_Blacksmith.ProductsCount + 1)
+            //    SellingItemOptions(BlacksmithOptions);
             if (input == m_Blacksmith.ProductsCount + 1)
-                SellingItemOptions(BlacksmithOptions);
-            else if (input == m_Blacksmith.ProductsCount + 2)
                 MainOptions();
             else
                 SelectedBsItemOptions(m_Blacksmith.GetProduct(input - 1));
