@@ -24,7 +24,10 @@
         public void BuyItem(int a_Price)
         {
             if (m_Gold >= a_Price)
+            {
                 m_Gold -= a_Price;
+                AudioManager.PlaySoundEffect(ESoundEffect.BuyItem);
+            }
         }
 
         public void SellItem(Item a_Item)

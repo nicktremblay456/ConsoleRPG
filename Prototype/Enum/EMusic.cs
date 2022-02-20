@@ -4,6 +4,7 @@
     {
         None,
 
+        Main,
         Town,
         Market,
         Combat,

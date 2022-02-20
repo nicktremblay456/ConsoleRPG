@@ -86,6 +86,7 @@
                         break;
                 }
             }
+            AudioManager.PlaySoundEffect(ESoundEffect.Item);
             m_Equipment.EquipItem(a_Item);
             m_Inventory.RemoveItem(a_Item);
             AddStats(Stats(a_Item));
@@ -97,6 +98,7 @@
         {
             if (a_Item == null)
                 return;
+            AudioManager.PlaySoundEffect(ESoundEffect.Item);
             m_Equipment.UnequipItem(a_Item);
             RemoveStats(Stats(a_Item));
             m_CurrentHealth = p_Health;
@@ -150,7 +152,7 @@
                           $"Vitality: {p_Vitality}\n" +
                           $"Energy: {p_Energy}\n\n");
 
-            Console.Write($"Exp: {p_Exp}");
+            Console.Write($"Exp: {p_Exp} / {p_MaxExp}\n\n");
             Console.ResetColor();
             Console.WriteLine("¤═════════════════════════════¤");
         }

@@ -17,7 +17,7 @@
         protected int p_Exp = 0;
         protected int p_Level = 1;
 
-        private int m_MaxExp = 100;
+        protected int p_MaxExp = 100;
 
         //public string Name { get => p_Name; }
         //public int Health { get => p_Health; }
@@ -49,12 +49,12 @@
         protected void GainExp(int a_Amount)
         {
             p_Exp += a_Amount;
-            if (p_Exp >= m_MaxExp)
+            if (p_Exp >= p_MaxExp)
             {
-                int remaining = p_Exp - m_MaxExp;
+                int remaining = p_Exp - p_MaxExp;
                 p_Exp = 0;
                 p_Exp += remaining;
-                m_MaxExp *= 2;
+                p_MaxExp *= 2;
                 p_Level++;
             }
         }

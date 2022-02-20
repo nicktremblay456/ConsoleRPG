@@ -7,7 +7,7 @@ namespace Prototype
         private static Game? m_Instance;
         public static Game? Instance { get => m_Instance; }
 
-        private GameMusic m_Music;
+        private AudioManager m_AudioMgr;
 
         private MainMenu m_MainMenu;
 
@@ -32,17 +32,18 @@ namespace Prototype
             m_Wizard = new WizardNpc("Wizard", GameData.GetWizardSpells("WizardSpellMarket.json"), 
                                                GameData.GetMarketProducts("WizardItemMarket.json"));
 
-            m_Music = new GameMusic();
+            m_AudioMgr = new AudioManager();
         }
 
         public void ShowMainMenu()
         {
+            m_AudioMgr.PlayMusic(EMusic.Main);
             m_MainMenu.ShowMainMenu();
         }
 
         private void MainOptions()
         {
-            m_Music.PlayMusic(EMusic.Town);
+            m_AudioMgr.PlayMusic(EMusic.Town);
             Console.Clear();
             //m_Player?.DrawStats();
 
@@ -72,9 +73,9 @@ namespace Prototype
             switch (input)
             {
                 case 1: break;// Arena
-                case 2: AlchemistOptions(); break;
-                case 3: m_Music.PlayMusic(EMusic.Market); BlacksmithOptions(); break;
-                case 4: WizardOptions(); break;
+                case 2: AudioManager.PlaySoundEffect(ESoundEffect.Door); m_AudioMgr.PlayMusic(EMusic.Market); AlchemistOptions(); break;
+                case 3: AudioManager.PlaySoundEffect(ESoundEffect.Door); m_AudioMgr.PlayMusic(EMusic.Market); BlacksmithOptions(); break;
+                case 4: AudioManager.PlaySoundEffect(ESoundEffect.Door); m_AudioMgr.PlayMusic(EMusic.Market); WizardOptions(); break;
                 case 5: InventoryOptions(); break;
                 case 6: EquipmentOptions(); break;
                 case 7: SpellBookOptions(); break;
@@ -94,7 +95,10 @@ namespace Prototype
             while (input > m_Alchemist.ProductsCount + 2);
 
             if (input == m_Alchemist.ProductsCount + 1)
+            {
+                AudioManager.PlaySoundEffect(ESoundEffect.Door);
                 MainOptions();
+            }
             else
                 SelectedAlchItemOptions(m_Alchemist.GetProduct(input - 1));
         }
@@ -147,7 +151,10 @@ namespace Prototype
             //if (input == m_Blacksmith.ProductsCount + 1)
             //    SellingItemOptions(BlacksmithOptions);
             if (input == m_Blacksmith.ProductsCount + 1)
+            {
+                AudioManager.PlaySoundEffect(ESoundEffect.Door);
                 MainOptions();
+            }
             else
                 SelectedBsItemOptions(m_Blacksmith.GetProduct(input - 1));
         }
@@ -304,6 +311,7 @@ namespace Prototype
                 case 1:
                     if (m_Player?.Inventory.Gold >= a_Spell.Price)
                     {
+                        m_Player.Inventory.BuyItem(a_Spell.Price);
                         m_Player.SpellBook.LearnSpell(a_Spell);
                     }
                     WizardSpellOptions();
@@ -365,6 +373,7 @@ namespace Prototype
                         ConsumableItem? cons = a_Item as ConsumableItem;
                         if (cons != null)
                         {
+                            AudioManager.PlaySoundEffect(ESoundEffect.Drink);
                             m_Player?.Regen(cons.HealthAmount, cons.ManaAmount);
                             m_Player?.Inventory.RemoveItem(a_Item);
                         }

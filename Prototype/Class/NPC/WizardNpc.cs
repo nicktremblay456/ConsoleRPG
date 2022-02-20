@@ -43,6 +43,7 @@
                 for (int i = 0; i < damageSpells.Length; i++)
                 {
                     Console.WriteLine($"\n{counter}: ");
+                    Console.Write($"Price: {damageSpells[i].Price} Gold\n");
                     damageSpells[i].DrawSpell();
                     counter++;
                 }
@@ -57,6 +58,7 @@
                 for (int i = 0; i < buffSpells.Length; i++)
                 {
                     Console.WriteLine($"\n{counter}: ");
+                    Console.Write($"Price: {buffSpells[i].Price} Gold\n");
                     buffSpells[i].DrawSpell();
                     counter++;
                 }
@@ -71,6 +73,7 @@
                 for (int i = 0; i < healSpells.Length; i++)
                 {
                     Console.WriteLine($"\n{counter}: ");
+                    Console.Write($"Price: {healSpells[i].Price} Gold\n");
                     healSpells[i].DrawSpell();
                     counter++;
                 }

@@ -21,17 +21,13 @@
             do { GetInput(ref input); }
             while (input < 1 || input > 3);
 
+            AudioManager.PlaySoundEffect(ESoundEffect.Select);
+
             switch (input)
             {
-                case 1:
-                    ShowNewGameMenu();
-                    break;
-                case 2:
-                    ShowLoadGameMenu();
-                    break;
-                case 3:
-                    Console.Clear();
-                    break;
+                case 1: ShowNewGameMenu(); break;
+                case 2: ShowLoadGameMenu(); break;
+                case 3: Console.Clear(); break;
             }
         }
 
@@ -60,9 +56,7 @@
                 case 1:
                 case 2:
                 case 3: CreateNewCharacter((EClass)input); break;
-                case 4:
-                    ShowMainMenu();
-                    break;
+                case 4: AudioManager.PlaySoundEffect(ESoundEffect.Select); ShowMainMenu(); break;
             }
         }
 
@@ -88,7 +82,7 @@
             while (input != 1);
 
             // TO DO, make load game system and input options
-
+            AudioManager.PlaySoundEffect(ESoundEffect.Select);
             ShowMainMenu();
         }
 
