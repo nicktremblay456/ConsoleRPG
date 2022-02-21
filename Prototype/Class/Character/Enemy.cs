@@ -2,16 +2,26 @@
 {
     public class Enemy : Character
     {
+        private int m_MinDamage = 0;
+        private int m_MaxDamage = 0;
         private int m_CurrentHealth = 0;
         private int m_CurrentMana = 0;
+        private int m_ExpReward = 0;
 
         private bool m_IsDead = false;
+
+        public int CurrentHealth { get => m_CurrentHealth; }
+        public int CurrentMana { get => m_CurrentMana; }
+        public int ExpReward { get => m_ExpReward; }
         public bool IsDead {  get => m_IsDead; }
 
-        public Enemy(string a_Name, int[] a_Stats) : base(a_Name, a_Stats)
+        public Enemy(string a_Name, int a_MinDamage, int a_MaxDamage, int[] a_Stats, int a_Level) : base(a_Name, a_Stats)
         {
             m_CurrentHealth = p_Health;
             m_CurrentMana = p_Mana;
+            p_Level = a_Level;
+
+            m_ExpReward = p_Level * 2;
         }
 
         private void CastSpell()
@@ -22,7 +32,7 @@
         public int GetDamage()
         {
             Random r = new Random();
-            int minDamage = 1, maxDamage = 1;
+            int minDamage = m_MinDamage, maxDamage = m_MaxDamage;
 
             /*
              * int minWeaponDmg = m_Inventory.GetWeapon.().GetWeapon().MinDamage;
@@ -70,8 +80,7 @@
             Console.WriteLine("¤═════════════════════════════¤");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write($"Name: {p_Name}\n" +
-                          $"Level: {p_Level}\n" +
-                          $"Class: {p_Class}\n");
+                          $"Level: {p_Level}\n");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write($"Health: {m_CurrentHealth}\n");
             Console.ForegroundColor = ConsoleColor.Blue;

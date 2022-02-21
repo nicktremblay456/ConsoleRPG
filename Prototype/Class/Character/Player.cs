@@ -14,6 +14,8 @@
         public Equipment Equipment { get => m_Equipment; }
         public Inventory Inventory { get => m_Inventory;}
         public SpellBook SpellBook { get => m_SpellBook;}
+        public int CurrentHealth { get => m_CurrentHealth;}
+        public int CurrentMana { get => m_CurrentMana;}
 
         public Player(string a_Name, EClass a_Class, int[] a_Stats) : base(a_Name, a_Stats)
         {
@@ -107,7 +109,7 @@
 
         public override void TakeDamage(int a_Amount)
         {
-            m_CurrentMana -= a_Amount;
+            m_CurrentMana -= (a_Amount - (p_Armor / 2));
             if (m_CurrentHealth <= 0)
             {
                 m_IsDead = true;

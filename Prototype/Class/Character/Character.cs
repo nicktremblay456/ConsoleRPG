@@ -46,7 +46,7 @@
             p_Energy = a_Stats[6];
         }
 
-        protected void GainExp(int a_Amount)
+        public void GainExp(int a_Amount)
         {
             p_Exp += a_Amount;
             if (p_Exp >= p_MaxExp)

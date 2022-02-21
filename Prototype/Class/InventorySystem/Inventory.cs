@@ -5,10 +5,12 @@
         private const int MAX_SPACE = 25;
 
         private List<Item> m_Items;
+        private List<ConsumableItem> m_Consumables = new List<ConsumableItem>();
         private int m_Gold = 0;// Start game with 50 gold
 
         public int Gold { get => m_Gold; }
         public int InventoryCount { get => m_Items.Count; }
+        public int ConsumableCount { get => m_Consumables.Count; }
 
 
         public Inventory()
@@ -77,6 +79,29 @@
         public Item? GetItem(int a_Index)
         {
             return m_Items[a_Index];
+        }
+
+        public ConsumableItem? GetConsumable(int a_Index)
+        {
+            return m_Consumables[a_Index];
+        }
+
+        public void DrawConsumable()
+        {
+            m_Consumables = new List<ConsumableItem>();
+            foreach (Item item in m_Items)
+            {
+                if (item is ConsumableItem)
+                    m_Consumables.Add(item as ConsumableItem);
+            }
+            Console.WriteLine("¤═════════════════════════════¤\n" +
+                              "         ¤ Consumable ¤        \n");
+            Console.Write("0: Back\n\n");
+            for (int i = 0; i < m_Consumables.Count; i++)
+            {
+                Console.Write($"{i + 1}: {m_Consumables[i].Name}\n");
+            }
+            Console.WriteLine("\n¤═════════════════════════════¤");
         }
 
         public void DrawInventory()

@@ -24,6 +24,7 @@ namespace Prototype
                 case EMusic.Main: fileName = "Freeport_Docks_Everquest.mp3"; break;
                 case EMusic.Town: fileName = "Everquest_Qeynos_hills_Cottage.mp3"; break;
                 case EMusic.Market: fileName = "Everquest_Shopping_Merchant.mp3"; break;
+                case EMusic.Combat: fileName = "EverQuest_Music_Planes_of_Power_Battle_Music_1.mp3"; break;
             }
             string path = Path.Combine(Environment.CurrentDirectory, @"Data\Musics\", fileName);
             m_MusicWMP.URL = path;

@@ -51,12 +51,14 @@
             do { GetInput(ref input); }
             while (input < 1 || input > 4);
 
+            AudioManager.PlaySoundEffect(ESoundEffect.Select);
+
             switch (input)
             {
                 case 1:
                 case 2:
                 case 3: CreateNewCharacter((EClass)input); break;
-                case 4: AudioManager.PlaySoundEffect(ESoundEffect.Select); ShowMainMenu(); break;
+                case 4: ShowMainMenu(); break;
             }
         }
 

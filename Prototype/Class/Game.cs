@@ -16,8 +16,7 @@ namespace Prototype
         private WizardNpc m_Wizard;
 
         private Player? m_Player = null;
-        
-        public Player? Player { get => m_Player; }
+        private Enemy? m_Enemy = null;
 
 
         public Game()
@@ -41,7 +40,7 @@ namespace Prototype
             m_MainMenu.ShowMainMenu();
         }
 
-        private void MainOptions()
+        public void MainOptions()
         {
             m_AudioMgr.PlayMusic(EMusic.Town);
             Console.Clear();
@@ -72,15 +71,24 @@ namespace Prototype
 
             switch (input)
             {
-                case 1: break;// Arena
+                case 1: ArenaOptions(); break;// Arena
                 case 2: AudioManager.PlaySoundEffect(ESoundEffect.Door); m_AudioMgr.PlayMusic(EMusic.Market); AlchemistOptions(); break;
                 case 3: AudioManager.PlaySoundEffect(ESoundEffect.Door); m_AudioMgr.PlayMusic(EMusic.Market); BlacksmithOptions(); break;
                 case 4: AudioManager.PlaySoundEffect(ESoundEffect.Door); m_AudioMgr.PlayMusic(EMusic.Market); WizardOptions(); break;
                 case 5: InventoryOptions(); break;
                 case 6: EquipmentOptions(); break;
                 case 7: SpellBookOptions(); break;
-                case 8: ShowMainMenu(); break;
+                case 8: AudioManager.PlaySoundEffect(ESoundEffect.Select); ShowMainMenu(); break;
             }
+        }
+
+        private void ArenaOptions()
+        {
+            m_AudioMgr.PlayMusic(EMusic.Combat);
+
+            m_Enemy = new Enemy("Gladiator", 1, 10, new int[] { 100, 100, 10, 25, 20, 0, 0 }, 5);
+            Combat combat = new Combat(ref m_Player, ref m_Enemy);
+            combat.Fight();
         }
 
         private void AlchemistOptions()
