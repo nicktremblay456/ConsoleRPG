@@ -17,6 +17,8 @@
 
         public Enemy(string a_Name, int a_MinDamage, int a_MaxDamage, int[] a_Stats, int a_Level) : base(a_Name, a_Stats)
         {
+            m_MinDamage = a_MinDamage;
+            m_MaxDamage = a_MaxDamage;
             m_CurrentHealth = p_Health;
             m_CurrentMana = p_Mana;
             p_Level = a_Level;
@@ -32,17 +34,10 @@
         public int GetDamage()
         {
             Random r = new Random();
-            int minDamage = m_MinDamage, maxDamage = m_MaxDamage;
+            int minDamage = 0, maxDamage = 0;
 
-            /*
-             * int minWeaponDmg = m_Inventory.GetWeapon.().GetWeapon().MinDamage;
-             * int maxWeaponDmg m_Inventory.GetWeapon.().GetWeapon().MaxDamage;
-             * if (m_Inventory.GetWeapon.() != null)
-             * minDamage = m_Inventory.GetWeapon.().WeaponType == EWeaponType.Melee ? minWeaponDamage + (p_Strength * 0.5f) : minWeaponDamage + (p_Dexterity * 0.5f);
-             * maxDamage = m_Inventory.GetWeapon.().WeaponType == EWeaponType.Melee ? maxWeaponDamage + (p_Strength * 0.5f) : maxWeaponDamage + (p_Dexterity * 0.5f);
-             * return r.Next(minDamage, maxDamage + 1);
-             * else return 1 + (p_Strength * 0.5f);
-             */
+            minDamage = m_MinDamage + (p_Strength / 2);
+            maxDamage = m_MaxDamage + (p_Strength / 2);
 
             return r.Next(minDamage, maxDamage + 1);
         }

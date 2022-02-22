@@ -109,7 +109,8 @@
 
         public override void TakeDamage(int a_Amount)
         {
-            m_CurrentMana -= (a_Amount - (p_Armor / 2));
+            float damage = a_Amount - (p_Armor * 0.5f);
+            m_CurrentHealth -= (int)damage;
             if (m_CurrentHealth <= 0)
             {
                 m_IsDead = true;

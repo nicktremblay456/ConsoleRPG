@@ -71,7 +71,7 @@ namespace Prototype
 
             switch (input)
             {
-                case 1: ArenaOptions(); break;// Arena
+                case 1: AudioManager.PlaySoundEffect(ESoundEffect.Door); ArenaOptions(); break;
                 case 2: AudioManager.PlaySoundEffect(ESoundEffect.Door); m_AudioMgr.PlayMusic(EMusic.Market); AlchemistOptions(); break;
                 case 3: AudioManager.PlaySoundEffect(ESoundEffect.Door); m_AudioMgr.PlayMusic(EMusic.Market); BlacksmithOptions(); break;
                 case 4: AudioManager.PlaySoundEffect(ESoundEffect.Door); m_AudioMgr.PlayMusic(EMusic.Market); WizardOptions(); break;
@@ -84,11 +84,40 @@ namespace Prototype
 
         private void ArenaOptions()
         {
-            m_AudioMgr.PlayMusic(EMusic.Combat);
+            Console.Clear();
 
-            m_Enemy = new Enemy("Gladiator", 1, 10, new int[] { 100, 100, 10, 25, 20, 0, 0 }, 5);
-            Combat combat = new Combat(ref m_Player, ref m_Enemy);
-            combat.Fight();
+            byte input = byte.MinValue;
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.Write("╔═════════════════════════════╗\n" +
+                          "║          ¤ Arena ¤          ║\n" +
+                          "║                             ║\n" +
+                          "║   1- Gladiator              ║\n" +
+                          "║   2- Random Beast           ║\n" +
+                          "║   3- Tournament             ║\n" +
+                          "║                             ║\n" +
+                          "║   4- Leave                  ║\n" +
+                          "║                             ║\n" +
+                          "╚═════════════════════════════╝\n");
+            Console.ResetColor();
+
+            do { GetInput(ref input, "Select an option: "); }
+            while (input < 1 || input > 4);
+
+            switch (input)
+            {
+                case 1:
+                    m_AudioMgr.PlayMusic(EMusic.Combat);
+
+                    m_Enemy = new Enemy("Gladiator", 1, 10, new int[] { 100, 100, 10, 25, 20, 0, 0 }, 5);
+                    Combat combat = new Combat(ref m_Player, ref m_Enemy);
+                    combat.Fight();
+                    break;
+                case 2: break;
+                case 3: break;
+                case 4: MainOptions(); break;
+            }
+
+            
         }
 
         private void AlchemistOptions()

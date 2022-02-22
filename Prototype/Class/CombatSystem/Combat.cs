@@ -19,6 +19,8 @@
             while (m_Player.CurrentHealth > 0 && m_Enemy.CurrentHealth > 0)
             {
                 PlayerTurn();
+                if (m_Enemy.CurrentHealth <= 0)
+                    continue;
                 EnemyTurn();
             }
 
@@ -56,7 +58,8 @@
 
         private void EnemyTurn()
         {
-            m_Player.TakeDamage(m_Enemy.GetDamage());
+            int damage = m_Enemy.GetDamage();
+            m_Player.TakeDamage(damage);
             DrawCombat();
         }
 

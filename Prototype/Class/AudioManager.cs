@@ -6,11 +6,12 @@ namespace Prototype
     {
         private WindowsMediaPlayer m_MusicWMP = new WindowsMediaPlayer();
         private EMusic m_Music = EMusic.None;
+        private int m_MusicVolume = 50;
+        private static int m_SfxVolume = 50;
 
         public AudioManager()
         {
             m_MusicWMP.settings.setMode("loop", true);
-            m_MusicWMP.settings.volume /= 2;
         }
 
         public void PlayMusic(EMusic a_Music)
@@ -26,14 +27,25 @@ namespace Prototype
                 case EMusic.Market: fileName = "Everquest_Shopping_Merchant.mp3"; break;
                 case EMusic.Combat: fileName = "EverQuest_Music_Planes_of_Power_Battle_Music_1.mp3"; break;
             }
+            if (m_Music == EMusic.Market)
+                m_MusicVolume = 100;
+            else
+                m_MusicVolume = 50;
+
+            m_MusicWMP.settings.volume = m_MusicVolume;
             string path = Path.Combine(Environment.CurrentDirectory, @"Data\Musics\", fileName);
             m_MusicWMP.URL = path;
-            m_MusicWMP.controls.play();
+            try
+            {
+                m_MusicWMP.controls.play();
+            }
+            catch { }
         }
 
         public static void PlaySoundEffect(ESoundEffect a_SoundEffect)
         {
             WindowsMediaPlayer sfxPlayer = new WindowsMediaPlayer();
+            sfxPlayer.settings.volume = m_SfxVolume;
             string fileName = "";
 
             switch(a_SoundEffect)
