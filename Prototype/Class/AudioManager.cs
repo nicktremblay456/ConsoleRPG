@@ -6,7 +6,7 @@ namespace Prototype
     {
         private WindowsMediaPlayer m_MusicWMP = new WindowsMediaPlayer();
         private EMusic m_Music = EMusic.None;
-        private int m_MusicVolume = 50;
+        private int m_MusicVolume = 25;
         private static int m_SfxVolume = 50;
 
         public AudioManager()
@@ -23,14 +23,14 @@ namespace Prototype
             switch (m_Music)
             {
                 case EMusic.Main: fileName = "Freeport_Docks_Everquest.mp3"; break;
-                case EMusic.Town: fileName = "Everquest_Qeynos_hills_Cottage.mp3"; break;
+                case EMusic.Town: fileName = "EverQuest_Music_POP_POK.mp3"; break;
                 case EMusic.Market: fileName = "Everquest_Shopping_Merchant.mp3"; break;
                 case EMusic.Combat: fileName = "EverQuest_Music_Planes_of_Power_Battle_Music_1.mp3"; break;
             }
             if (m_Music == EMusic.Market)
                 m_MusicVolume = 100;
             else
-                m_MusicVolume = 50;
+                m_MusicVolume = 25;
 
             m_MusicWMP.settings.volume = m_MusicVolume;
             string path = Path.Combine(Environment.CurrentDirectory, @"Data\Musics\", fileName);
@@ -55,6 +55,7 @@ namespace Prototype
                 case ESoundEffect.BuyItem: fileName = "buyitem.mp3"; break;
                 case ESoundEffect.Drink: fileName = "drink.mp3"; break;
                 case ESoundEffect.Door: fileName = "doorst_c.mp3"; break;
+                case ESoundEffect.Swing: fileName = "swingbig.mp3"; break;
                 case ESoundEffect.ArrowHit: fileName = "arrowhit.mp3"; break;
                 case ESoundEffect.SpellDamage: fileName = "spell_damage.mp3"; break;
                 case ESoundEffect.SpellBuff: fileName = "spell_buff.mp3"; break;
@@ -62,9 +63,12 @@ namespace Prototype
                 case ESoundEffect.GetHit: fileName = "gethit2mb.mp3"; break;
                 case ESoundEffect.OpenChest: fileName = "chest_cl.mp3"; break;
             }
-            string path = Path.Combine(Environment.CurrentDirectory, @"Data\SoundEffects\", fileName);
-            sfxPlayer.URL = path;
-            sfxPlayer.controls.play();
+            if (fileName != string.Empty)
+            {
+                string path = Path.Combine(Environment.CurrentDirectory, @"Data\SoundEffects\", fileName);
+                sfxPlayer.URL = path;
+                sfxPlayer.controls.play();
+            }
         }
     }
 }

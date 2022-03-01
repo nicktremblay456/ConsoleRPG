@@ -46,7 +46,7 @@
             p_Energy = a_Stats[6];
         }
 
-        public void GainExp(int a_Amount)
+        public virtual void GainExp(int a_Amount)
         {
             p_Exp += a_Amount;
             if (p_Exp >= p_MaxExp)
@@ -54,8 +54,30 @@
                 int remaining = p_Exp - p_MaxExp;
                 p_Exp = 0;
                 p_Exp += remaining;
-                p_MaxExp *= 2;
+                p_MaxExp += 150;
                 p_Level++;
+
+                switch(p_Class)
+                {
+                    case EClass.Warrior:
+                        p_Strength += 5;
+                        p_Dexterity += 2;
+                        p_Vitality += 10;
+                        p_Energy += 2;
+                        break;
+                    case EClass.Archer:
+                        p_Strength += 2;
+                        p_Dexterity += 5;
+                        p_Vitality += 5;
+                        p_Energy += 2;
+                        break;
+                    case EClass.Sorcerer:
+                        p_Strength += 2;
+                        p_Dexterity += 2;
+                        p_Vitality += 5;
+                        p_Energy += 10;
+                        break;
+                }
             }
         }
 
@@ -84,9 +106,7 @@
         }
 
         public abstract void TakeDamage(int a_Amount);
-
         public abstract void Regen(int a_HealthAmount = 0, int a_ManaAmount = 0);
-
         public abstract void DrawStats();
     }
 }

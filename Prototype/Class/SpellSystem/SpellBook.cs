@@ -3,6 +3,7 @@
     public class SpellBook
     {
         private List<Spell> m_Spells;
+        public int SpellCount { get => m_Spells.Count; }
 
         public SpellBook()
         {
@@ -33,10 +34,12 @@
 
         public void DrawSpellBook()
         {
+            // Seperate spell by type
             Spell[] damageSpells = GetSpellByType(ESpellType.Damage);
             Spell[] buffSpells = GetSpellByType(ESpellType.Buff);
             Spell[] healSpells = GetSpellByType(ESpellType.Heal);
-
+            int counter = 0;
+            
             Console.WriteLine("¤═════════════════════════════¤\n" +
                               "        ¤ Spell Book ¤         \n");
             Console.Write("\n0: Back\n");
@@ -47,6 +50,8 @@
                 Console.ResetColor();
                 for (int i = 0; i < damageSpells.Length; i++)
                 {
+                    counter++;
+                    Console.WriteLine($"{counter}: ");
                     damageSpells[i].DrawSpell();
                 }
             }
@@ -59,6 +64,8 @@
                 Console.ResetColor();
                 for (int i = 0; i < buffSpells.Length; i++)
                 {
+                    counter++;
+                    Console.WriteLine($"{counter}: ");
                     buffSpells[i].DrawSpell();
                 }
             }
@@ -71,6 +78,8 @@
                 Console.ResetColor();
                 for (int i = 0; i < healSpells.Length; i++)
                 {
+                    counter++;
+                    Console.WriteLine($"{counter}: ");
                     healSpells[i].DrawSpell();
                 }
             }

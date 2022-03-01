@@ -16,18 +16,8 @@
 
         public override void DrawItem()
         {
-            ConsoleColor qualityColor = ConsoleColor.Black;
-            switch (p_Quality)
-            {
-                case EQuality.Poor: qualityColor = ConsoleColor.Gray; break;
-                case EQuality.Common: qualityColor = ConsoleColor.White; break;
-                case EQuality.Uncommon: qualityColor = ConsoleColor.Green; break;
-                case EQuality.Rare: qualityColor = ConsoleColor.DarkBlue; break;
-                case EQuality.Epic: qualityColor = ConsoleColor.Cyan; break;
-                case EQuality.Legendary: qualityColor = ConsoleColor.Red; break;
-            }
             Console.WriteLine("¤════════════════════¤\n");
-            Console.ForegroundColor = qualityColor;
+            Console.ForegroundColor = p_QualityColor;
             Console.Write($"{p_Name}\n");
             Console.Write($"{p_Quality}\n\n");
             Console.ForegroundColor = ConsoleColor.Yellow;

@@ -82,8 +82,9 @@ namespace Prototype
             }
         }
 
-        private void ArenaOptions()
+        public void ArenaOptions()
         {
+            m_AudioMgr.PlayMusic(EMusic.Town);
             Console.Clear();
 
             byte input = byte.MinValue;
@@ -108,16 +109,14 @@ namespace Prototype
                 case 1:
                     m_AudioMgr.PlayMusic(EMusic.Combat);
 
-                    m_Enemy = new Enemy("Gladiator", 1, 10, new int[] { 100, 100, 10, 25, 20, 0, 0 }, 5);
+                    m_Enemy = new Enemy("Gladiator", 25, 1, 10, new int[] { 100, 100, 10, 25, 20, 0, 0 }, 5);
                     Combat combat = new Combat(ref m_Player, ref m_Enemy);
                     combat.Fight();
                     break;
                 case 2: break;
                 case 3: break;
-                case 4: MainOptions(); break;
+                case 4: AudioManager.PlaySoundEffect(ESoundEffect.Door); MainOptions(); break;
             }
-
-            
         }
 
         private void AlchemistOptions()
@@ -254,7 +253,7 @@ namespace Prototype
             {
                 case 1: WizardEquipmentOptions(); break;
                 case 2: WizardSpellOptions(); break;
-                case 3: MainOptions(); break;
+                case 3: AudioManager.PlaySoundEffect(ESoundEffect.Door); MainOptions(); break;
             }
         }
 

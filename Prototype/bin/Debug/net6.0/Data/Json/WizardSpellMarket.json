@@ -8,8 +8,8 @@
     "DexterityBuff": "0",
     "VitalityBuff": "0",
     "EnergyBuff": "0",
-    "MinDamage": "1",
-    "MaxDamage": "10",
+    "MinDamage": "5",
+    "MaxDamage": "20",
     "HealAmount": "0",
     "ManaAmount": "0",
     "ManaCost": "10"

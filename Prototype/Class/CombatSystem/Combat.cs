@@ -24,8 +24,13 @@
                 EnemyTurn();
             }
 
-            m_Player.GainExp(m_Enemy.ExpReward);
-            Game.Instance?.MainOptions();
+
+            if (m_Enemy.CurrentHealth <= 0)
+            {
+                m_Player.GainExp(m_Enemy.ExpReward);
+            }
+            System.Threading.Thread.Sleep(2000);
+            Game.Instance?.ArenaOptions();
         }
 
         private void PlayerTurn()
@@ -48,8 +53,8 @@
 
             switch(input)
             {
-                case 1: m_Enemy.TakeDamage(m_Player.GetDamage()); break;
-                case 2: break;
+                case 1: AudioManager.PlaySoundEffect(ESoundEffect.Swing); m_Enemy.TakeDamage(m_Player.GetDamage()); break;
+                case 2: PlayerSpellOptions(); break;
                 case 3: PlayerConsumableOptions(); break;
             }
 
@@ -61,6 +66,61 @@
             int damage = m_Enemy.GetDamage();
             m_Player.TakeDamage(damage);
             DrawCombat();
+        }
+
+        private void PlayerSpellOptions()
+        {
+            byte input = byte.MinValue;
+
+            Console.Clear();
+            m_Player.SpellBook.DrawSpellBook();
+
+            do { GetInput(ref input, "Select a spell: "); }
+            while(input > m_Player.SpellBook.SpellCount);
+
+            if (input == 0)
+                return;
+
+            SelectedSpellOptions(m_Player.SpellBook.GetSpell(input - 1));
+        }
+
+        private void SelectedSpellOptions(Spell? a_Spell)
+        {
+            if (a_Spell == null) return;
+
+            byte input = byte.MinValue;
+
+            Console.Clear();
+            a_Spell.DrawSpell();
+
+            Console.Write("╔═════════════════════════════╗\n" +
+                          "║      ¤ Spell options ¤      ║\n" +
+                          "║                             ║\n" +
+                          "║   1- Cast                   ║\n" +
+                          "║                             ║\n" +
+                          "║   2- Back                   ║\n" +
+                          "║                             ║\n" +
+                          "╚═════════════════════════════╝\n");
+
+            do { GetInput(ref input, $"Do you want to cast -> {a_Spell.Name}: "); }
+            while (input < 1 || input > 2);
+
+            switch(input)
+            {
+                case 1:
+                    if (m_Player.CurrentMana >= a_Spell.ManaCost)
+                    {
+                        m_Player.CastSpell(a_Spell);
+                        switch(a_Spell.Type)
+                        {
+                            case ESpellType.Damage: AudioManager.PlaySoundEffect(ESoundEffect.SpellDamage); m_Enemy.TakeDamage(m_Player.GetSpellDamage(a_Spell)); break;
+                            case ESpellType.Buff: break;
+                            case ESpellType.Heal: AudioManager.PlaySoundEffect(ESoundEffect.SpellHeal); m_Player.Regen(a_Spell.HealAmount, a_Spell.ManaAmount); break;
+                        }
+                    }
+                    break;
+                case 2: PlayerSpellOptions(); break;
+            }
         }
 
         private void PlayerConsumableOptions()
@@ -81,8 +141,7 @@
 
         private void SelectedConsumableOptions(Item? a_Item)
         {
-            if (a_Item == null)
-                return;
+            if (a_Item == null) return;
 
             byte input = byte.MinValue;
 
@@ -94,7 +153,7 @@
                           "║                             ║\n" +
                           "║   1- Use                    ║\n" +
                           "║                             ║\n" +
-                          "║   3- Back                   ║\n" +
+                          "║   2- Back                   ║\n" +
                           "║                             ║\n" +
                           "╚═════════════════════════════╝\n");
 

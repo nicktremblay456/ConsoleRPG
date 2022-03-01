@@ -7,6 +7,7 @@
         BuyItem,
         Drink,
         Door,
+        Swing,
         ArrowHit,
         SpellDamage,
         SpellBuff,

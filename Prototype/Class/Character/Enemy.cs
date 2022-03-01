@@ -15,7 +15,7 @@
         public int ExpReward { get => m_ExpReward; }
         public bool IsDead {  get => m_IsDead; }
 
-        public Enemy(string a_Name, int a_MinDamage, int a_MaxDamage, int[] a_Stats, int a_Level) : base(a_Name, a_Stats)
+        public Enemy(string a_Name, int a_ExpReward, int a_MinDamage, int a_MaxDamage, int[] a_Stats, int a_Level) : base(a_Name, a_Stats)
         {
             m_MinDamage = a_MinDamage;
             m_MaxDamage = a_MaxDamage;
@@ -23,7 +23,7 @@
             m_CurrentMana = p_Mana;
             p_Level = a_Level;
 
-            m_ExpReward = p_Level * 2;
+            m_ExpReward = a_ExpReward;
         }
 
         private void CastSpell()
@@ -34,10 +34,7 @@
         public int GetDamage()
         {
             Random r = new Random();
-            int minDamage = 0, maxDamage = 0;
-
-            minDamage = m_MinDamage + (p_Strength / 2);
-            maxDamage = m_MaxDamage + (p_Strength / 2);
+            int minDamage = m_MinDamage + (p_Strength / 2), maxDamage = m_MaxDamage + (p_Strength / 2);
 
             return r.Next(minDamage, maxDamage + 1);
         }
@@ -50,6 +47,7 @@
             if (m_CurrentHealth <= 0)
             {
                 m_IsDead = true;
+                m_CurrentHealth = 0;
                 //Death
             }
         }

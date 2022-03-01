@@ -36,25 +36,44 @@
             m_Inventory.AddItems(new Item[] { item, item2 });
         }
 
-        private void CastSpell()
+        public void CastSpell(Spell? a_Spell)
         {
-            
+            if (a_Spell == null) return;
+            if (m_CurrentMana >= a_Spell.ManaCost)
+                m_CurrentMana -= a_Spell.ManaCost;
+        }
+
+        public int GetSpellDamage(Spell? a_Spell)
+        {
+            if (a_Spell == null) return 0;
+            Random r = new Random();
+            int minDamage = a_Spell.MinDamage + (int)(p_Energy * 0.5f), maxDamage = a_Spell.MaxDamage + (int)(p_Energy * 0.5f);
+
+            return r.Next(minDamage, maxDamage + 1);
         }
 
         public int GetDamage()
         {
+            if (m_Equipment.GetEquipedWeapon() == null) return 1;
             Random r = new Random();
-            int minDamage = 1, maxDamage = 1;
-            int minWeaponDmg = m_Equipment.GetEquipedWeapon().MinDamage;
-            int maxWeaponDmg = m_Equipment.GetEquipedWeapon().MaxDamage;
+            EquipableItem? weapon = m_Equipment.GetEquipedWeapon();
+            int minDamage = weapon.MinDamage, maxDamage = weapon.MaxDamage;
             
             if (m_Equipment.GetEquipedWeapon() != null)
             {
-                minDamage = m_Equipment.GetEquipedWeapon().WeaponType == EWeaponType.MELEE ? 
-                   minWeaponDmg + (int)(p_Strength * 0.5f) : minWeaponDmg + (int)(p_Dexterity * 0.5f);
-                maxDamage = m_Equipment.GetEquipedWeapon().WeaponType == EWeaponType.MELEE ? 
-                   maxWeaponDmg + (int)(p_Strength * 0.5f) : maxWeaponDmg + (int)(p_Dexterity * 0.5f);
-                return r.Next(minDamage, maxDamage + 1);
+                // WORK IN PROGRESS, need to remake this part since we have more than 3 weapon type.
+                switch(weapon.WeaponType)
+                {
+                    case EWeaponType.MAGICAL: 
+                    case EWeaponType.MELEE:
+                        minDamage += (int)(p_Strength * 0.5f);
+                        maxDamage += (int)(p_Strength * 0.5f);
+                        break;
+                    case EWeaponType.RANGED:
+                        minDamage += (int)(p_Dexterity * 0.5f);
+                        maxDamage += (int)(p_Dexterity * 0.5f);
+                        break;
+                }
             }
 
             return r.Next(minDamage, maxDamage + 1);
@@ -70,6 +89,7 @@
         {
             if (a_Item == null)
                 return;
+
             if (a_Item.WeaponType != EWeaponType.NONE)
             {
                 switch (p_Class)
@@ -96,6 +116,13 @@
             m_CurrentMana = p_Mana;
         }
 
+        public override void GainExp(int a_Amount)
+        {
+            base.GainExp(a_Amount);
+            m_CurrentHealth = p_Health;
+            m_CurrentMana = p_Mana;
+        }
+
         public void UnequipItem(EquipableItem? a_Item)
         {
             if (a_Item == null)
@@ -107,6 +134,7 @@
             m_CurrentMana = p_Mana;
         }
 
+        #region Abstract Methods
         public override void TakeDamage(int a_Amount)
         {
             float damage = a_Amount - (p_Armor * 0.5f);
@@ -119,7 +147,6 @@
             }
         }
 
-        #region Abstract Methods
         public override void Regen(int a_HealthAmount = 0, int a_ManaAmount = 0)
         {
             if (a_HealthAmount > 0)
