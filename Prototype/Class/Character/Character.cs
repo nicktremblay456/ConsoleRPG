@@ -78,6 +78,9 @@
                         p_Energy += 10;
                         break;
                 }
+                p_Health += (int)(p_Vitality * 0.5f);
+                p_Mana += (int)(p_Energy * 0.5f);
+                Console.WriteLine("Level Up !");
             }
         }
 

@@ -64,33 +64,38 @@ namespace Prototype
 
         public void PlaySoundEffect(ESoundEffect a_SoundEffect)
         {
-            WindowsMediaPlayer sfxPlayer = new WindowsMediaPlayer();
-            sfxPlayer.settings.volume = m_SfxVolume;
-            string fileName = "";
+            WindowsMediaPlayer sfxPlayer;
+            try
+            {
+                sfxPlayer = new WindowsMediaPlayer();
+                sfxPlayer.settings.volume = m_SfxVolume;
+                string fileName = string.Empty;
 
-            switch(a_SoundEffect)
-            {
-                case ESoundEffect.Select: fileName = "button_1.mp3"; break;
-                case ESoundEffect.Item: fileName = "itemclth.mp3"; break;
-                case ESoundEffect.BuyItem: fileName = "buyitem.mp3"; break;
-                case ESoundEffect.Drink: fileName = "drink.mp3"; break;
-                case ESoundEffect.Door: fileName = "doorst_c.mp3"; break;
-                case ESoundEffect.Swing: fileName = "swingbig.mp3"; break;
-                case ESoundEffect.ArrowHit: fileName = "arrowhit.mp3"; break;
-                case ESoundEffect.SpellDamage: fileName = "spell_damage.mp3"; break;
-                case ESoundEffect.SpellBuff: fileName = "spell_buff.mp3"; break;
-                case ESoundEffect.SpellHeal: fileName = "spell_heal.mp3"; break;
-                case ESoundEffect.GetHit: fileName = "gethit2mb.mp3"; break;
-                case ESoundEffect.OpenChest: fileName = "chest_cl.mp3"; break;
-                case ESoundEffect.BookPage: fileName = "page_turn01.mp3"; break;
-                case ESoundEffect.LevelUp: fileName = "levelup.mp3"; break;
+                switch(a_SoundEffect)
+                {
+                    case ESoundEffect.Select: fileName = "button_1.mp3"; break;
+                    case ESoundEffect.Item: fileName = "itemclth.mp3"; break;
+                    case ESoundEffect.BuyItem: fileName = "buyitem.mp3"; break;
+                    case ESoundEffect.Drink: fileName = "drink.mp3"; break;
+                    case ESoundEffect.Door: fileName = "doorst_c.mp3"; break;
+                    case ESoundEffect.Swing: fileName = "swingbig.mp3"; break;
+                    case ESoundEffect.ArrowHit: fileName = "arrowhit.mp3"; break;
+                    case ESoundEffect.SpellDamage: fileName = "spell_damage.mp3"; break;
+                    case ESoundEffect.SpellBuff: fileName = "spell_buff.mp3"; break;
+                    case ESoundEffect.SpellHeal: fileName = "spell_heal.mp3"; break;
+                    case ESoundEffect.GetHit: fileName = "gethit2mb.mp3"; break;
+                    case ESoundEffect.OpenChest: fileName = "chest_cl.mp3"; break;
+                    case ESoundEffect.BookPage: fileName = "page_turn01.mp3"; break;
+                    case ESoundEffect.LevelUp: fileName = "levelup.mp3"; break;
+                }
+                if (fileName != string.Empty)
+                {
+                    string path = Path.Combine(Environment.CurrentDirectory, @"Data\SoundEffects\", fileName);
+                    sfxPlayer.URL = path;
+                    sfxPlayer.controls.play();
+                }
             }
-            if (fileName != string.Empty)
-            {
-                string path = Path.Combine(Environment.CurrentDirectory, @"Data\SoundEffects\", fileName);
-                sfxPlayer.URL = path;
-                sfxPlayer.controls.play();
-            }
+            catch { }
         }
     }
 }

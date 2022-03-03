@@ -25,6 +25,12 @@
                 EnemyTurn();
             }
 
+            int goldReward = m_Enemy.GoldReward;
+            if (goldReward > 0)
+            {
+                Console.WriteLine($"You gain {goldReward} gold");
+                m_Player.Inventory.AddGold(goldReward);
+            }
 
             if (m_Enemy.CurrentHealth <= 0)
             {
