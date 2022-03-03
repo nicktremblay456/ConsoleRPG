@@ -28,7 +28,7 @@
             if (m_Gold >= a_Price)
             {
                 m_Gold -= a_Price;
-                AudioManager.PlaySoundEffect(ESoundEffect.BuyItem);
+                AudioManager.Instance?.PlaySoundEffect(ESoundEffect.BuyItem);
             }
         }
 

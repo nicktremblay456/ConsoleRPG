@@ -8,6 +8,12 @@
 
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(@" __      __            .__       .___         _____                                   .__           " + "\n" +
+                              @"/  \    /  \___________|  |    __| _/   _____/ ____\   ____  ____   ____   __________ |  |   ____   " + "\n" +
+                              @"\   \/\/   /  _ \_  __ \  |   / __ |   /  _ \   __\  _/ ___\/  _ \ /    \ /  ___/  _ \|  | _/ __ \  " + "\n" +
+                              @" \        (  <_> )  | \/  |__/ /_/ |  (  <_> )  |    \  \__(  <_> )   |  \\___ (  <_> )  |_\  ___/  " + "\n" +
+                              @"  \__/\  / \____/|__|  |____/\____ |   \____/|__|     \___  >____/|___|  /____  >____/|____/\___  > " + "\n" +
+                              @"       \/                         \/                      \/           \/     \/                \/  ");
             Console.Write("¤═══════════════════¤\n" +
                           "║   ¤ Main Menu ¤   ║\n" +
                           "║                   ║\n" +
@@ -21,7 +27,7 @@
             do { GetInput(ref input); }
             while (input < 1 || input > 3);
 
-            AudioManager.PlaySoundEffect(ESoundEffect.Select);
+            AudioManager.Instance?.PlaySoundEffect(ESoundEffect.Select);
 
             switch (input)
             {
@@ -51,7 +57,7 @@
             do { GetInput(ref input); }
             while (input < 1 || input > 4);
 
-            AudioManager.PlaySoundEffect(ESoundEffect.Select);
+            AudioManager.Instance?.PlaySoundEffect(ESoundEffect.Select);
 
             switch (input)
             {
@@ -84,7 +90,7 @@
             while (input != 1);
 
             // TO DO, make load game system and input options
-            AudioManager.PlaySoundEffect(ESoundEffect.Select);
+            AudioManager.Instance?.PlaySoundEffect(ESoundEffect.Select);
             ShowMainMenu();
         }
 

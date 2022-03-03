@@ -58,7 +58,7 @@
   [// Sorcerer Starting Items
     {
       "EquipableType": "6", // Main Hand
-      "WeaponType": "1", // Ranged
+      "WeaponType": "2", // Ranged
       "Name": "Wooden Staff",
       "Quality": "0",
       "Armor": "0",

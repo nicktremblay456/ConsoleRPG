@@ -14,26 +14,30 @@
         public Equipment Equipment { get => m_Equipment; }
         public Inventory Inventory { get => m_Inventory;}
         public SpellBook SpellBook { get => m_SpellBook;}
-        public int CurrentHealth { get => m_CurrentHealth;}
-        public int CurrentMana { get => m_CurrentMana;}
+        public int CurrentHealth { get => m_CurrentHealth; }
+        public int CurrentMana { get => m_CurrentMana; }
 
         public Player(string a_Name, EClass a_Class, int[] a_Stats) : base(a_Name, a_Stats)
         {
             m_Inventory = new Inventory();
             m_Equipment = new Equipment(ref m_Inventory);
             m_SpellBook = new SpellBook();
-            
+
+            if (a_Stats[5] > 0)
+                p_Health += (int)(a_Stats[5] * 0.5);
+            if (a_Stats[6] > 0)
+                p_Mana += (int)(a_Stats[6] * 0.5);
+
             m_CurrentHealth = p_Health;
             m_CurrentMana = p_Mana;
             p_Class = a_Class;
 
             // Test items
-            EquipableItem item = new EquipableItem(1000, "Enigma", EQuality.Epic, EEquipableType.Chest, 
-            new int[] { 1200, 225, 175, 500, 250, 0, 0 });
-            EquipableItem item2 = new EquipableItem(1000, "Breath Of The Dying", EQuality.Legendary, EEquipableType.MainHand,
-            new int[] { 0, 500, 350, 250, 250, 75, 235 }, EWeaponType.MELEE);
-
-            m_Inventory.AddItems(new Item[] { item, item2 });
+            //EquipableItem item = new EquipableItem(1000, "Enigma", EQuality.Epic, EEquipableType.Chest, 
+            //new int[] { 1200, 225, 175, 500, 250, 0, 0 });
+            //EquipableItem item2 = new EquipableItem(1000, "Breath Of The Dying", EQuality.Legendary, EEquipableType.MainHand,
+            //new int[] { 0, 500, 350, 250, 250, 75, 235 }, EWeaponType.MELEE);
+            //m_Inventory.AddItems(new Item[] { item, item2 });
         }
 
         public void CastSpell(Spell? a_Spell)
@@ -50,6 +54,20 @@
             int minDamage = a_Spell.MinDamage + (int)(p_Energy * 0.5f), maxDamage = a_Spell.MaxDamage + (int)(p_Energy * 0.5f);
 
             return r.Next(minDamage, maxDamage + 1);
+        }
+
+        public int GetHealthRegenPower(Spell? a_Spell)
+        {
+            if (a_Spell == null) return 0;
+
+            return a_Spell.HealAmount + (int)(p_Energy * 0.5f);
+        }
+
+        public int GetManaRegenPower(Spell? a_Spell)
+        {
+            if (a_Spell == null) return 0;
+
+            return a_Spell.ManaAmount + (int)(p_Energy * 0.5f);
         }
 
         public int GetDamage()
@@ -108,12 +126,17 @@
                         break;
                 }
             }
-            AudioManager.PlaySoundEffect(ESoundEffect.Item);
+            AudioManager.Instance?.PlaySoundEffect(ESoundEffect.Item);
             m_Equipment.EquipItem(a_Item);
             m_Inventory.RemoveItem(a_Item);
             AddStats(Stats(a_Item));
             m_CurrentHealth = p_Health;
             m_CurrentMana = p_Mana;
+        }
+
+        public void EquipItems(EquipableItem[] a_Items)
+        {
+            m_Equipment.EquipItems(a_Items);
         }
 
         public override void GainExp(int a_Amount)
@@ -127,7 +150,7 @@
         {
             if (a_Item == null)
                 return;
-            AudioManager.PlaySoundEffect(ESoundEffect.Item);
+            AudioManager.Instance?.PlaySoundEffect(ESoundEffect.Item);
             m_Equipment.UnequipItem(a_Item);
             RemoveStats(Stats(a_Item));
             m_CurrentHealth = p_Health;

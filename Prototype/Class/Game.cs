@@ -7,8 +7,6 @@ namespace Prototype
         private static Game? m_Instance;
         public static Game? Instance { get => m_Instance; }
 
-        private AudioManager m_AudioMgr;
-
         private MainMenu m_MainMenu;
 
         private NPC m_Alchemist;
@@ -30,19 +28,17 @@ namespace Prototype
             m_Blacksmith = new NPC("Blacksmith", GameData.GetMarketProducts("BsMarketData.json"));
             m_Wizard = new WizardNpc("Wizard", GameData.GetWizardSpells("WizardSpellMarket.json"), 
                                                GameData.GetMarketProducts("WizardItemMarket.json"));
-
-            m_AudioMgr = new AudioManager();
         }
 
         public void ShowMainMenu()
         {
-            m_AudioMgr.PlayMusic(EMusic.Main);
+            AudioManager.Instance?.PlayMusic(EMusic.Main);
             m_MainMenu.ShowMainMenu();
         }
 
         public void MainOptions()
         {
-            m_AudioMgr.PlayMusic(EMusic.Town);
+            AudioManager.Instance?.PlayMusic(EMusic.Town);
             Console.Clear();
             //m_Player?.DrawStats();
 
@@ -71,20 +67,20 @@ namespace Prototype
 
             switch (input)
             {
-                case 1: AudioManager.PlaySoundEffect(ESoundEffect.Door); ArenaOptions(); break;
-                case 2: AudioManager.PlaySoundEffect(ESoundEffect.Door); m_AudioMgr.PlayMusic(EMusic.Market); AlchemistOptions(); break;
-                case 3: AudioManager.PlaySoundEffect(ESoundEffect.Door); m_AudioMgr.PlayMusic(EMusic.Market); BlacksmithOptions(); break;
-                case 4: AudioManager.PlaySoundEffect(ESoundEffect.Door); m_AudioMgr.PlayMusic(EMusic.Market); WizardOptions(); break;
-                case 5: InventoryOptions(); break;
-                case 6: EquipmentOptions(); break;
-                case 7: SpellBookOptions(); break;
-                case 8: AudioManager.PlaySoundEffect(ESoundEffect.Select); ShowMainMenu(); break;
+                case 1: AudioManager.Instance?.PlaySoundEffect(ESoundEffect.Door); ArenaOptions(); break;
+                case 2: AudioManager.Instance?.PlaySoundEffect(ESoundEffect.Door); AudioManager.Instance?.PlayMusic(EMusic.Market); AlchemistOptions(); break;
+                case 3: AudioManager.Instance?.PlaySoundEffect(ESoundEffect.Door); AudioManager.Instance?.PlayMusic(EMusic.Market); BlacksmithOptions(); break;
+                case 4: AudioManager.Instance?.PlaySoundEffect(ESoundEffect.Door); AudioManager.Instance?.PlayMusic(EMusic.Market); WizardOptions(); break;
+                case 5: AudioManager.Instance?.PlaySoundEffect(ESoundEffect.Select); InventoryOptions(); break;
+                case 6: AudioManager.Instance?.PlaySoundEffect(ESoundEffect.Select); EquipmentOptions(); break;
+                case 7: AudioManager.Instance?.PlaySoundEffect(ESoundEffect.BookPage); SpellBookOptions(); break;
+                case 8: AudioManager.Instance?.PlaySoundEffect(ESoundEffect.Select); ShowMainMenu(); break;
             }
         }
 
         public void ArenaOptions()
         {
-            m_AudioMgr.PlayMusic(EMusic.Town);
+            AudioManager.Instance?.PlayMusic(EMusic.Town);
             Console.Clear();
 
             byte input = byte.MinValue;
@@ -107,15 +103,15 @@ namespace Prototype
             switch (input)
             {
                 case 1:
-                    m_AudioMgr.PlayMusic(EMusic.Combat);
+                    AudioManager.Instance?.PlayMusic(EMusic.Combat);
 
-                    m_Enemy = new Enemy("Gladiator", 25, 1, 10, new int[] { 100, 100, 10, 25, 20, 0, 0 }, 5);
+                    m_Enemy = new Enemy("Gladiator", 100, 1, 10, new int[] { 100, 100, 10, 25, 20, 0, 0 }, 5);
                     Combat combat = new Combat(ref m_Player, ref m_Enemy);
                     combat.Fight();
                     break;
                 case 2: break;
                 case 3: break;
-                case 4: AudioManager.PlaySoundEffect(ESoundEffect.Door); MainOptions(); break;
+                case 4: AudioManager.Instance?.PlaySoundEffect(ESoundEffect.Door); MainOptions(); break;
             }
         }
 
@@ -132,7 +128,7 @@ namespace Prototype
 
             if (input == m_Alchemist.ProductsCount + 1)
             {
-                AudioManager.PlaySoundEffect(ESoundEffect.Door);
+                AudioManager.Instance?.PlaySoundEffect(ESoundEffect.Door);
                 MainOptions();
             }
             else
@@ -188,7 +184,7 @@ namespace Prototype
             //    SellingItemOptions(BlacksmithOptions);
             if (input == m_Blacksmith.ProductsCount + 1)
             {
-                AudioManager.PlaySoundEffect(ESoundEffect.Door);
+                AudioManager.Instance?.PlaySoundEffect(ESoundEffect.Door);
                 MainOptions();
             }
             else
@@ -253,7 +249,7 @@ namespace Prototype
             {
                 case 1: WizardEquipmentOptions(); break;
                 case 2: WizardSpellOptions(); break;
-                case 3: AudioManager.PlaySoundEffect(ESoundEffect.Door); MainOptions(); break;
+                case 3: AudioManager.Instance?.PlaySoundEffect(ESoundEffect.Door); MainOptions(); break;
             }
         }
 
@@ -409,7 +405,7 @@ namespace Prototype
                         ConsumableItem? cons = a_Item as ConsumableItem;
                         if (cons != null)
                         {
-                            AudioManager.PlaySoundEffect(ESoundEffect.Drink);
+                            AudioManager.Instance?.PlaySoundEffect(ESoundEffect.Drink);
                             m_Player?.Regen(cons.HealthAmount, cons.ManaAmount);
                             m_Player?.Inventory.RemoveItem(a_Item);
                         }
@@ -503,6 +499,7 @@ namespace Prototype
             do { GetInput(ref input, "\nEnter 0 to close your book: "); }
             while (input != 0);
 
+            AudioManager.Instance?.PlaySoundEffect(ESoundEffect.BookPage);
             MainOptions();
         }
 
@@ -570,17 +567,17 @@ namespace Prototype
                 case EClass.Warrior:
                     m_Player = new Player(a_Name, a_Class, new int[]
                     { 150, 50, 10, 30, 20, 0, 0 });
-                    m_Player.Equipment.EquipItems(new EquipableItem[] { items[0],items[1] } );
+                    m_Player.EquipItems(new EquipableItem[] { items[0],items[1] } );
                     break;
                 case EClass.Archer:
                     m_Player = new Player(a_Name, a_Class, new int[]
                     { 100, 100, 10, 15, 30, 0, 0 });
-                    m_Player.Equipment.EquipItems(new EquipableItem[] { items[2], items[3] });
+                    m_Player.EquipItems(new EquipableItem[] { items[2], items[3] });
                     break;
                 case EClass.Sorcerer:
                     m_Player = new Player(a_Name, a_Class, new int[]
-                    { 75, 200, 10, 10, 10, 0, 0 });
-                    m_Player.Equipment.EquipItems(new EquipableItem[] { items[4], items[5] });
+                    { 75, 200, 10, 10, 10, 0, 50 });
+                    m_Player.EquipItems(new EquipableItem[] { items[4], items[5] });
                     break;
             }
             // Starting gold

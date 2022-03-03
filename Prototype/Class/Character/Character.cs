@@ -56,8 +56,8 @@
                 p_Exp += remaining;
                 p_MaxExp += 150;
                 p_Level++;
-
-                switch(p_Class)
+                AudioManager.Instance?.PlaySoundEffect(ESoundEffect.LevelUp);
+                switch (p_Class)
                 {
                     case EClass.Warrior:
                         p_Strength += 5;

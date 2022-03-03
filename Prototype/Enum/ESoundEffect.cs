@@ -14,5 +14,7 @@
         SpellHeal,
         GetHit,
         OpenChest,
+        BookPage,
+        LevelUp,
     }
 }

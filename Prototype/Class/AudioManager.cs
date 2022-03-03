@@ -2,15 +2,35 @@
 
 namespace Prototype
 {
-    public class AudioManager
+    /// <summary>
+    /// Singleton Class
+    /// </summary>
+    public sealed class AudioManager
     {
+        private static AudioManager? m_Instance = null;
+        private static readonly object m_Lock = new object();
+        public static AudioManager? Instance 
+        { 
+            get
+            {
+                lock (m_Lock)
+                {
+                    if (m_Instance == null)
+                        m_Instance = new AudioManager();
+
+                    return m_Instance;
+                }
+            }
+        }
+
         private WindowsMediaPlayer m_MusicWMP = new WindowsMediaPlayer();
         private EMusic m_Music = EMusic.None;
         private int m_MusicVolume = 25;
-        private static int m_SfxVolume = 50;
+        private int m_SfxVolume = 50;
 
-        public AudioManager()
+        private AudioManager()
         {
+            m_Instance = this;
             m_MusicWMP.settings.setMode("loop", true);
         }
 
@@ -42,7 +62,7 @@ namespace Prototype
             catch { }
         }
 
-        public static void PlaySoundEffect(ESoundEffect a_SoundEffect)
+        public void PlaySoundEffect(ESoundEffect a_SoundEffect)
         {
             WindowsMediaPlayer sfxPlayer = new WindowsMediaPlayer();
             sfxPlayer.settings.volume = m_SfxVolume;
@@ -62,6 +82,8 @@ namespace Prototype
                 case ESoundEffect.SpellHeal: fileName = "spell_heal.mp3"; break;
                 case ESoundEffect.GetHit: fileName = "gethit2mb.mp3"; break;
                 case ESoundEffect.OpenChest: fileName = "chest_cl.mp3"; break;
+                case ESoundEffect.BookPage: fileName = "page_turn01.mp3"; break;
+                case ESoundEffect.LevelUp: fileName = "levelup.mp3"; break;
             }
             if (fileName != string.Empty)
             {

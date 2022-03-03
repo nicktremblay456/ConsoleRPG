@@ -15,6 +15,8 @@ public class Program
 
     private static void Main(string[] args)
     {
+        Console.Title = "World of Console";
+
         // Set Console Window
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {

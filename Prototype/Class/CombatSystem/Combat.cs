@@ -21,6 +21,7 @@
                 PlayerTurn();
                 if (m_Enemy.CurrentHealth <= 0)
                     continue;
+                Thread.Sleep(1000);// With 1 sec between each turn.
                 EnemyTurn();
             }
 
@@ -28,8 +29,9 @@
             if (m_Enemy.CurrentHealth <= 0)
             {
                 m_Player.GainExp(m_Enemy.ExpReward);
+                Console.WriteLine($"\nYou gain {m_Enemy.ExpReward} exp\n");
             }
-            System.Threading.Thread.Sleep(2000);
+            Thread.Sleep(2000);// Wait 2 sec before ending combat.
             Game.Instance?.ArenaOptions();
         }
 
@@ -49,11 +51,21 @@
             do { GetInput(ref input, "Enter your action choice: "); }
             while (input < 1 || input > 3);
 
-            AudioManager.PlaySoundEffect(ESoundEffect.Select);
+            AudioManager.Instance?.PlaySoundEffect(ESoundEffect.Select);
 
             switch(input)
             {
-                case 1: AudioManager.PlaySoundEffect(ESoundEffect.Swing); m_Enemy.TakeDamage(m_Player.GetDamage()); break;
+                case 1:
+                    EquipableItem weapon = m_Player.Equipment?.GetEquipedWeapon();
+                    if (weapon != null)
+                    {
+                        if (weapon.WeaponType == EWeaponType.MELEE || weapon.WeaponType == EWeaponType.MAGICAL)
+                            AudioManager.Instance?.PlaySoundEffect(ESoundEffect.Swing); 
+                        else if (weapon.WeaponType == EWeaponType.RANGED)
+                            AudioManager.Instance?.PlaySoundEffect(ESoundEffect.ArrowHit);
+                    }
+                    m_Enemy.TakeDamage(m_Player.GetDamage()); 
+                    break;
                 case 2: PlayerSpellOptions(); break;
                 case 3: PlayerConsumableOptions(); break;
             }
@@ -105,22 +117,22 @@
             do { GetInput(ref input, $"Do you want to cast -> {a_Spell.Name}: "); }
             while (input < 1 || input > 2);
 
-            switch(input)
+            if (input == 1)
             {
-                case 1:
-                    if (m_Player.CurrentMana >= a_Spell.ManaCost)
-                    {
-                        m_Player.CastSpell(a_Spell);
-                        switch(a_Spell.Type)
-                        {
-                            case ESpellType.Damage: AudioManager.PlaySoundEffect(ESoundEffect.SpellDamage); m_Enemy.TakeDamage(m_Player.GetSpellDamage(a_Spell)); break;
-                            case ESpellType.Buff: break;
-                            case ESpellType.Heal: AudioManager.PlaySoundEffect(ESoundEffect.SpellHeal); m_Player.Regen(a_Spell.HealAmount, a_Spell.ManaAmount); break;
-                        }
-                    }
-                    break;
-                case 2: PlayerSpellOptions(); break;
+                m_Player.CastSpell(a_Spell);
+                switch (a_Spell.Type)
+                {
+                    case ESpellType.Damage: AudioManager.Instance?.PlaySoundEffect(ESoundEffect.SpellDamage); m_Enemy.TakeDamage(m_Player.GetSpellDamage(a_Spell)); break;
+                    case ESpellType.Buff: break;
+                    case ESpellType.Heal:
+                        int healthRegenValue = m_Player.GetHealthRegenPower(a_Spell), manaRegenValue = m_Player.GetManaRegenPower(a_Spell);
+                        AudioManager.Instance?.PlaySoundEffect(ESoundEffect.SpellHeal);
+                        m_Player.Regen(healthRegenValue, manaRegenValue);
+                        break;
+                }
             }
+            else if (input == 2)
+                PlayerSpellOptions();
         }
 
         private void PlayerConsumableOptions()
@@ -160,24 +172,18 @@
             do { GetInput(ref input, $"What you wanna do with -> {a_Item.Name}: "); }
             while (input < 1 || input > 2);
 
-            switch (input)
+            if (input == 1)
             {
-                case 1:
-                    if (a_Item is ConsumableItem)
+                if (a_Item is ConsumableItem)
+                {
+                    ConsumableItem? cons = a_Item as ConsumableItem;
+                    if (cons != null)
                     {
-                        ConsumableItem? cons = a_Item as ConsumableItem;
-                        if (cons != null)
-                        {
-                            AudioManager.PlaySoundEffect(ESoundEffect.Drink);
-                            m_Player?.Regen(cons.HealthAmount, cons.ManaAmount);
-                            m_Player?.Inventory.RemoveItem(a_Item);
-                        }
+                        AudioManager.Instance?.PlaySoundEffect(ESoundEffect.Drink);
+                        m_Player?.Regen(cons.HealthAmount, cons.ManaAmount);
+                        m_Player?.Inventory.RemoveItem(a_Item);
                     }
-                    PlayerConsumableOptions();
-                    break;
-                case 2:
-                    PlayerConsumableOptions();
-                    break;
+                }
             }
         }
 
